@@ -6,7 +6,7 @@
 /*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/18 18:21:39 by ntothmur         ###   ########.fr       */
+/*   Updated: 2019/10/18 18:41:31 by ntothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@
 
 typedef struct			s_coords
 {
-	int					x;
-	int					y;
+	int					z;
 	int					color;
-
 }						t_coords;
 
 typedef struct			s_mlx_fdf
@@ -47,6 +45,7 @@ typedef struct			s_mlx_fdf
 
 typedef struct			s_map
 {
+	t_coords			**coord_arr;
 	int					width;
 	int					height;
 }						t_map;
