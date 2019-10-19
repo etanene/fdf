@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/19 14:24:44 by ntothmur         ###   ########.fr       */
+/*   Updated: 2019/10/19 20:28:05 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define ERROR_USAGE		"Usage: ./fdf *map_file*"
 # define ERROR_MAP			"Incorrect map file"
 # define ERROR_MAP_READING	"Reading error"
+# define ERROR_MAP_OPEN		"Open error"
+# define ERROR_MAP_COUNT	"Count error"
+# define ERROR_MAP_VALIDATE	"Validate error"
 
 # define KEY_ESC 53
 # define KEY_W 13
@@ -51,8 +54,11 @@ typedef enum
 
 typedef struct			s_coords
 {
+	int					x;
+	int					y;
 	int					z;
 	int					color;
+	struct s_coords		*next;
 }						t_coords;
 
 typedef struct			s_mlx_fdf
@@ -87,13 +93,14 @@ typedef struct 			s_fdf
 
 
 void					ft_error(char *s);
-void					rotate_x(int *y, int *z, double angle_x);
-void					rotate_y(int *x, int *z, double angle_y);
-void					rotate_z(int *x, int *y, double angle_z);
-void					iso(int *x, int *y, int z);
-void					zoom(int key, t_fdf *fdf);
-void					rotate(int key, t_fdf *fdf);
-void					change_projection(int key, t_fdf *fdf);
-void					close(void);
+void					ft_rotate_x(int *y, int *z, double angle_x);
+void					ft_rotate_y(int *x, int *z, double angle_y);
+void					ft_rotate_z(int *x, int *y, double angle_z);
+void					ft_iso(int *x, int *y, int z);
+void					ft_zoom(int key, t_fdf *fdf);
+void					ft_rotate(int key, t_fdf *fdf);
+void					ft_change_projection(int key, t_fdf *fdf);
+void					ft_close(void);
+int						ft_validate_color(char *str);
 
 #endif
