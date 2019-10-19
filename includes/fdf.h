@@ -6,7 +6,7 @@
 /*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/19 13:52:12 by ntothmur         ###   ########.fr       */
+/*   Updated: 2019/10/19 14:24:44 by ntothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,9 @@ void					rotate_x(int *y, int *z, double angle_x);
 void					rotate_y(int *x, int *z, double angle_y);
 void					rotate_z(int *x, int *y, double angle_z);
 void					iso(int *x, int *y, int z);
+void					zoom(int key, t_fdf *fdf);
+void					rotate(int key, t_fdf *fdf);
+void					change_projection(int key, t_fdf *fdf);
+void					close(void);
 
 #endif
