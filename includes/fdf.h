@@ -6,7 +6,7 @@
 /*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/18 18:41:31 by ntothmur         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:03:20 by ntothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
+# include <math.h>
 
 # define ERROR_USAGE		"Usage: ./fdf *map_file*"
 # define ERROR_MAP			"Incorrect map file"
@@ -48,6 +49,16 @@ typedef struct			s_map
 	t_coords			**coord_arr;
 	int					width;
 	int					height;
+	double				angle_x;
+	double				angle_y;
+	double				angle_z;
 }						t_map;
+
+
+void					ft_error(char *s);
+void					rotate_x(int *y, int *z, double angle_x);
+void					rotate_y(int *x, int *z, double angle_y);
+void					rotate_z(int *x, int *y, double angle_z);
+void					iso(int *x, int *y, int z);
 
 #endif
