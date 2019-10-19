@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afalmer- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 15:33:24 by afalmer-          #+#    #+#             */
-/*   Updated: 2018/11/23 15:33:25 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/19 20:04:44 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	if (!*needle)
 		return ((char*)haystack);
 	res_hs = NULL;
-	while (*haystack && len--)
+	while (haystack && *haystack && len--)
 	{
 		new_hs = (char*)haystack;
 		res_hs = (char*)haystack;

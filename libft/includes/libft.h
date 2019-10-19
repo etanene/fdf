@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:53:56 by afalmer-          #+#    #+#             */
-/*   Updated: 2019/05/16 15:24:47 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/19 20:33:46 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,9 @@ int					ft_pow(int base, int power);
 int					ft_unumlen(unsigned long long num, int base);
 int					ft_numlen(long long num);
 void				ft_free_multiarr(char **arr);
+size_t				ft_count_arr(char **arr);
+int					ft_isnumber_base(char *str, int base);
+long long			ft_atoi_base(char *str, int base);
+void				ft_str_toupper(char *str);
 
 #endif
