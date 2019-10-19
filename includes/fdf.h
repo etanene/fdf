@@ -6,7 +6,7 @@
 /*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/19 13:03:20 by ntothmur         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:28:20 by ntothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@
 # define ERROR_USAGE		"Usage: ./fdf *map_file*"
 # define ERROR_MAP			"Incorrect map file"
 # define ERROR_MAP_READING	"Reading error"
+
+# define KEY_ESC 53
+# define KEY_W 13
+# define KEY_S 1
+# define KEY_A 0
+# define KEY_D 2
+# define KEY_Q 12
+# define KEY_E 14
+# define KEY_I 34
+# define KEY_P 35
+# define KEY_MINUS 27
+# define KEY_PLUS 24
+# define KEY_ARROW_UP 126
+# define KEY_ARROW_DOWN 125
+# define KEY_ARROW_LEFT 123
+# define KEY_ARROW_RIGHT 124
+
 
 typedef struct			s_coords
 {
@@ -52,6 +69,7 @@ typedef struct			s_map
 	double				angle_x;
 	double				angle_y;
 	double				angle_z;
+	int					zoom;
 }						t_map;
 
 
