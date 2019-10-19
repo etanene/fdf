@@ -6,7 +6,7 @@
 /*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/19 13:28:20 by ntothmur         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:52:12 by ntothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@
 # define KEY_ARROW_LEFT 123
 # define KEY_ARROW_RIGHT 124
 
+typedef enum
+{
+	ISO,
+	PARALLEL
+}						t_projection;
 
 typedef struct			s_coords
 {
@@ -64,6 +69,7 @@ typedef struct			s_mlx_fdf
 typedef struct			s_map
 {
 	t_coords			**coord_arr;
+	t_projection		projection;
 	int					width;
 	int					height;
 	double				angle_x;
@@ -71,6 +77,13 @@ typedef struct			s_map
 	double				angle_z;
 	int					zoom;
 }						t_map;
+
+typedef struct 			s_fdf
+{
+	t_map				*map;
+	t_mlx_fdf			mlx;
+}						t_fdf;
+
 
 
 void					ft_error(char *s);
