@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/19 20:28:05 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/20 18:36:55 by ntothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # define ERROR_MAP_OPEN		"Open error"
 # define ERROR_MAP_COUNT	"Count error"
 # define ERROR_MAP_VALIDATE	"Validate error"
+# define ERROR_MLX_INIT		"Mlx init error"
+# define ERROR_MLX_NEW_WIN	"Mlx new window error"
+# define ERROR_MLX_NEW_IMG	"Mlx new image error"
+# define ERROR_MLX_GET_DATA	"Mlx get data addr error"
 
 # define KEY_ESC 53
 # define KEY_W 13
@@ -82,6 +86,8 @@ typedef struct			s_map
 	double				angle_y;
 	double				angle_z;
 	int					zoom;
+	int					x_offset;
+	int					y_offset;
 }						t_map;
 
 typedef struct 			s_fdf

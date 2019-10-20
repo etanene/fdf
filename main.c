@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:13:10 by afalmer-          #+#    #+#             */
-/*   Updated: 2019/10/19 20:31:05 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/20 18:37:06 by ntothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void ft_print_map(t_coords *map)
 {
 	while (map)
 	{
-		ft_printf("x: %d y: %d z: %d color: %d\n", map->x, map->y, map->z, map->color);
+		ft_printf("x: %d y: %d z: %d color: %d winth: %d height: %d\n", map->x, map->y, map->z, map->color);
 		map = map->next;
 	}
 }
@@ -86,10 +86,12 @@ void ft_print_map(t_coords *map)
 int		main(int ac, char **av)
 {
 	t_coords	*map;
+	t_fdf		*fdf;
 
 	if (ac < 2)
 		ft_error(ERROR_USAGE);
 	map = ft_read_map(av[1]);
+	ft_init(fdf->mlx, fdf->map);
 	ft_print_map(map);
 	return (0);
 }
