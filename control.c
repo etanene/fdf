@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 13:28:58 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/19 18:42:09 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/21 19:43:43 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_zoom(int key, t_fdf *fdf)
 		fdf->map->zoom++;
 	if (fdf->map->zoom < 0)
 		fdf->map->zoom = 1;
-	// draw(fdf->map, fdf);
+	 ft_draw(fdf);
 }
 
 void	ft_rotate(int key, t_fdf *fdf)
@@ -37,7 +37,7 @@ void	ft_rotate(int key, t_fdf *fdf)
 		fdf->map->angle_z += 0.05;
 	else if (key == KEY_E)
 		fdf->map->angle_z -= 0.05;
-	// draw(fdf->map, fdf);
+	ft_draw(fdf);
 }
 
 void	ft_change_projection(int key, t_fdf *fdf)
@@ -49,7 +49,7 @@ void	ft_change_projection(int key, t_fdf *fdf)
 		fdf->map->projection = ISO;
 	else if (key == KEY_P)
 		fdf->map->projection = PARALLEL;
-	// draw(fdf->map, fdf);
+	ft_draw(fdf);
 }
 
 void	ft_close(void)

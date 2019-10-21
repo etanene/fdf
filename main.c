@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:13:10 by afalmer-          #+#    #+#             */
-/*   Updated: 2019/10/20 18:37:06 by ntothmur         ###   ########.fr       */
+/*   Updated: 2019/10/21 19:39:20 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_add_coords(t_coords **coords, char **line_coords, int y)
+void	ft_add_coords(t_coords **coords, char **line_coords, int y, t_map *map)
 {
 	t_coords	*new;
 	char		**point;
@@ -30,11 +30,13 @@ void	ft_add_coords(t_coords **coords, char **line_coords, int y)
 		new->x = x++;
 		new->y = y;
 		new->z = ft_atoi_base(point[0], 10);
-		new->color = point[1] ? ft_atoi_base(point[1] + 2, 16) : 0;
+		new->color = point[1] ? ft_atoi_base(point[1] + 2, 16) : 0xFFFFFF;
 		new->next = *coords;
 		*coords = new;
 		line_coords++;
 	}
+	map->height = y + 1;
+	map->width = x;
 	ft_free_multiarr(point);
 }
 
@@ -52,7 +54,7 @@ char	**ft_get_coords_line(char *line)
 	return (coords);
 }
 
-t_coords *ft_read_map(char *filename)
+t_coords *ft_read_map(char *filename, t_map *map)
 {
 	int			fd;
 	char		*line;
@@ -68,7 +70,7 @@ t_coords *ft_read_map(char *filename)
 	{
 		line_coords = ft_get_coords_line(line);
 		ft_strdel(&line);
-		ft_add_coords(&coords, line_coords, y++);
+		ft_add_coords(&coords, line_coords, y++, map);
 		ft_free_multiarr(line_coords);
 	}
 	return (coords);
@@ -78,20 +80,22 @@ void ft_print_map(t_coords *map)
 {
 	while (map)
 	{
-		ft_printf("x: %d y: %d z: %d color: %d winth: %d height: %d\n", map->x, map->y, map->z, map->color);
+		ft_printf("x: %d y: %d z: %d color: %d\n", map->x, map->y, map->z, map->color);
 		map = map->next;
 	}
 }
 
 int		main(int ac, char **av)
 {
-	t_coords	*map;
-	t_fdf		*fdf;
+	t_fdf		fdf;
 
 	if (ac < 2)
 		ft_error(ERROR_USAGE);
-	map = ft_read_map(av[1]);
-	ft_init(fdf->mlx, fdf->map);
-	ft_print_map(map);
+	ft_init(&fdf);
+	fdf.coords = ft_read_map(av[1], fdf.map);
+	// ft_printf("width: %d height: %d\n", fdf.map->width, fdf.map->height);
+	ft_draw_map(&fdf);
+	// ft_print_map(map);
+	ft_printf("zoom: %d\n", fdf.map->zoom);
 	return (0);
 }

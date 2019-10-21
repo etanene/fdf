@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/20 18:36:55 by ntothmur         ###   ########.fr       */
+/*   Updated: 2019/10/21 19:44:16 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # include <math.h>
+# include "mlx.h"
 
 # define ERROR_USAGE		"Usage: ./fdf *map_file*"
 # define ERROR_MAP			"Incorrect map file"
@@ -49,6 +50,9 @@
 # define KEY_ARROW_DOWN 125
 # define KEY_ARROW_LEFT 123
 # define KEY_ARROW_RIGHT 124
+
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef enum
 {
@@ -93,9 +97,19 @@ typedef struct			s_map
 typedef struct 			s_fdf
 {
 	t_map				*map;
-	t_mlx_fdf			mlx;
+	t_mlx_fdf			*mlx;
+	t_coords			*coords;
 }						t_fdf;
 
+typedef struct			s_draw
+{
+	int					deltaX;
+	int					deltaY;
+	int					signX;
+	int 				signY;
+	int					err;
+	int					err2;
+}						t_draw;
 
 
 void					ft_error(char *s);
@@ -108,5 +122,9 @@ void					ft_rotate(int key, t_fdf *fdf);
 void					ft_change_projection(int key, t_fdf *fdf);
 void					ft_close(void);
 int						ft_validate_color(char *str);
+void					ft_init(t_fdf *fdf);
+void					ft_draw_map(t_fdf *fdf);
+int						ft_keys(int key, t_fdf *fdf);
+void					ft_draw(t_fdf *fdf);
 
 #endif
