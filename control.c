@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 13:28:58 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/21 19:43:43 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/22 14:23:31 by ntothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,4 @@ void	ft_change_projection(int key, t_fdf *fdf)
 	else if (key == KEY_P)
 		fdf->map->projection = PARALLEL;
 	ft_draw(fdf);
-}
-
-void	ft_close(void)
-{
-	exit(0);
 }
