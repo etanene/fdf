@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/22 14:02:27 by ntothmur         ###   ########.fr       */
+/*   Updated: 2019/10/22 17:29:22 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct			s_coords
 	int					y;
 	int					z;
 	int					color;
-	struct s_coords		*next;
+	// struct s_coords		*next;
 }						t_coords;
 
 typedef struct			s_mlx_fdf
@@ -80,9 +80,14 @@ typedef struct			s_mlx_fdf
 	int					bits_per_pixel;
 }						t_mlx_fdf;
 
+typedef struct 			s_coords_arr
+{
+	t_coords			**coords;
+	size_t				size;
+}						t_coords_arr;
+
 typedef struct			s_map
 {
-	t_coords			**coord_arr;
 	t_projection		projection;
 	int					width;
 	int					height;
@@ -98,7 +103,7 @@ typedef struct 			s_fdf
 {
 	t_map				*map;
 	t_mlx_fdf			*mlx;
-	t_coords			*coords;
+	t_coords_arr		*coords_arr;
 }						t_fdf;
 
 typedef struct			s_draw
@@ -127,5 +132,6 @@ void					ft_draw_map(t_fdf *fdf);
 int						ft_keys(int key, t_fdf *fdf);
 void					ft_draw(t_fdf *fdf);
 void					ft_menu(t_fdf *fdf);
+t_coords				*ft_create_point(int x, int y, int z, int color);
 
 #endif

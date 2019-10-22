@@ -6,37 +6,50 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:13:10 by afalmer-          #+#    #+#             */
-/*   Updated: 2019/10/21 19:39:20 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/22 17:29:39 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_add_coords(t_coords **coords, char **line_coords, int y, t_map *map)
+t_coords	*ft_create_point(int x, int y, int z, int color)
 {
-	t_coords	*new;
+	t_coords	*point;
+
+	point = (t_coords*)malloc(sizeof(t_coords));
+	point->x = x;
+	point->y = y;
+	point->z = z;
+	point->color = color;
+	return (point);
+}
+
+void	ft_add_coords(t_fdf *fdf, char **line_coords, int y)
+{
 	char		**point;
 	int			x;
+	int			size_line;
 
 	x = 0;
+	size_line = ft_count_arr(line_coords);
 	while (*line_coords)
 	{
 		point = ft_strsplit(*line_coords, ',');
 		ft_str_toupper(point[1]);
-		new = (t_coords*)malloc(sizeof(t_coords));
 		if (!ft_isnumber_base(point[0], 10) ||
 			(point[1] && !ft_validate_color(point[1])))
 			ft_error(ERROR_MAP_VALIDATE);
-		new->x = x++;
-		new->y = y;
-		new->z = ft_atoi_base(point[0], 10);
-		new->color = point[1] ? ft_atoi_base(point[1] + 2, 16) : 0xFFFFFF;
-		new->next = *coords;
-		*coords = new;
+		if (y * size_line + x >= (int)fdf->coords_arr->size)
+			fdf->coords_arr->coords = ft_realloc((void**)&fdf->coords_arr->coords,
+										&fdf->coords_arr->size,
+										sizeof(*fdf->coords_arr->coords),
+										fdf->coords_arr->size * 2);
+		fdf->coords_arr->coords[y * size_line + x] = ft_create_point(x, y, ft_atoi_base(point[0], 10), point[1] ? ft_atoi_base(point[1] + 2, 16) : 0xFFFFFF);
+		x++;
 		line_coords++;
 	}
-	map->height = y + 1;
-	map->width = x;
+	fdf->map->height = y + 1;
+	fdf->map->width = x;
 	ft_free_multiarr(point);
 }
 
@@ -54,34 +67,36 @@ char	**ft_get_coords_line(char *line)
 	return (coords);
 }
 
-t_coords *ft_read_map(char *filename, t_map *map)
+void	ft_read_map(char *filename, t_fdf *fdf)
 {
 	int			fd;
 	char		*line;
-	t_coords	*coords;
 	char		**line_coords;
 	int			y;
 
 	y = 0;
-	coords = NULL;
 	if ((fd = open(filename, O_RDONLY)) == -1)
 		ft_error(ERROR_MAP_OPEN);
 	while (get_next_line(fd, &line) > 0)
 	{
 		line_coords = ft_get_coords_line(line);
 		ft_strdel(&line);
-		ft_add_coords(&coords, line_coords, y++, map);
+		ft_add_coords(fdf, line_coords, y++);
 		ft_free_multiarr(line_coords);
 	}
-	return (coords);
 }
 
-void ft_print_map(t_coords *map)
+void ft_print_map(t_coords **map, size_t size)
 {
-	while (map)
+	size_t		i;
+
+	i = 0;
+	ft_printf("hello\n");
+	while (i < size)
 	{
-		ft_printf("x: %d y: %d z: %d color: %d\n", map->x, map->y, map->z, map->color);
-		map = map->next;
+		ft_printf("ind: %d\n", i);
+		ft_printf("x: %d y: %d z: %d color: %d\n", map[i]->x, map[i]->y, map[i]->z, map[i]->color);
+		i++;
 	}
 }
 
@@ -92,10 +107,9 @@ int		main(int ac, char **av)
 	if (ac < 2)
 		ft_error(ERROR_USAGE);
 	ft_init(&fdf);
-	fdf.coords = ft_read_map(av[1], fdf.map);
+	ft_read_map(av[1], &fdf);
 	// ft_printf("width: %d height: %d\n", fdf.map->width, fdf.map->height);
 	ft_draw_map(&fdf);
-	// ft_print_map(map);
-	ft_printf("zoom: %d\n", fdf.map->zoom);
+	// ft_print_map(fdf.coords_arr->coords, fdf.coords_arr->size);
 	return (0);
 }

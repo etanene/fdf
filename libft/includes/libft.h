@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:53:56 by afalmer-          #+#    #+#             */
-/*   Updated: 2019/10/19 20:33:46 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/22 16:14:55 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ size_t				ft_count_arr(char **arr);
 int					ft_isnumber_base(char *str, int base);
 long long			ft_atoi_base(char *str, int base);
 void				ft_str_toupper(char *str);
+void				*ft_realloc(void **mem, size_t *size, int elem_size, size_t new_size);
 
 #endif

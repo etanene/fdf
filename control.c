@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 13:28:58 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/22 14:23:31 by ntothmur         ###   ########.fr       */
+/*   Updated: 2019/10/22 19:14:47 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_zoom(int key, t_fdf *fdf)
 		fdf->map->zoom++;
 	if (fdf->map->zoom < 0)
 		fdf->map->zoom = 1;
-	 ft_draw(fdf);
+	ft_draw(fdf);
 }
 
 void	ft_rotate(int key, t_fdf *fdf)

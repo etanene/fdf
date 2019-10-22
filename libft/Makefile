@@ -6,7 +6,7 @@
 #    By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 17:30:17 by afalmer-          #+#    #+#              #
-#    Updated: 2019/10/19 20:34:02 by afalmer-         ###   ########.fr        #
+#    Updated: 2019/10/22 15:53:46 by afalmer-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 SRC =	ft_atoi.c ft_bzero.c ft_itoa.c ft_tolower.c ft_toupper.c \
 		get_next_line.c ft_pow.c ft_numlen.c ft_unumlen.c ft_free_multiarr.c \
-		ft_count_arr.c ft_isnumber_base.c ft_atoi_base.c
+		ft_count_arr.c ft_isnumber_base.c ft_atoi_base.c ft_realloc.c
 
 SRCDIR_IS = ft_is/
 SRC_IS =	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c

@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:10:16 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/21 19:02:55 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/22 15:44:16 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ void	ft_init(t_fdf *fdf)
 {
 	fdf->map = (t_map*)malloc(sizeof(t_map));
 	fdf->mlx = (t_mlx_fdf*)malloc(sizeof(t_mlx_fdf));
+	fdf->coords_arr = (t_coords_arr*)malloc(sizeof(t_coords_arr));
+	fdf->coords_arr->size = 128;
+	fdf->coords_arr->coords = (t_coords**)malloc(sizeof(t_coords*) * fdf->coords_arr->size);
 	fdf->map->projection = PARALLEL;
 	fdf->map->angle_x = 0;
 	fdf->map->angle_y = 0;
