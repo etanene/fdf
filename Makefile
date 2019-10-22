@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+         #
+#    By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 18:05:58 by afalmer-          #+#    #+#              #
-#    Updated: 2019/10/21 20:45:03 by afalmer-         ###   ########.fr        #
+#    Updated: 2019/10/22 14:10:15 by ntothmur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FDF = ./fdf
-SRC = main.c utils.c validate.c keys.c control.c rotation.c draw_map.c
+SRC = main.c utils.c validate.c keys.c control.c rotation.c draw_map.c menu.c
 
 OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:%.c=%.o))

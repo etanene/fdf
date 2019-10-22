@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntothmur <ntothmur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/21 19:44:16 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/22 14:02:27 by ntothmur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,6 @@ void					ft_init(t_fdf *fdf);
 void					ft_draw_map(t_fdf *fdf);
 int						ft_keys(int key, t_fdf *fdf);
 void					ft_draw(t_fdf *fdf);
+void					ft_menu(t_fdf *fdf);
 
 #endif
