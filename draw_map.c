@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 16:43:49 by afalmer-          #+#    #+#             */
-/*   Updated: 2019/10/22 19:19:43 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/22 20:50:01 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,57 +26,52 @@ void	ft_put_pixel(t_coords *coords, t_fdf *fdf)
 	}
 }
 
-void	ft_draw_line(t_coords *point1, t_coords *point2, t_fdf *fdf)
+void	ft_draw_line(t_coords point1, t_coords point2, t_fdf *fdf)
 {
 	t_draw		draw;
-	t_coords	*temp_point;
+	t_coords	temp_point;
 
-	draw.deltaX = abs(point2->x - point1->x);
-	draw.deltaY = abs(point2->y - point1->y);
-	draw.signX = point2->x > point1->x ? 1 : -1;
-	draw.signY = point2->y  > point1->y  ? 1 : -1;
+	draw.deltaX = abs(point2.x - point1.x);
+	draw.deltaY = abs(point2.y - point1.y);
+	draw.signX = point2.x > point1.x ? 1 : -1;
+	draw.signY = point2.y > point1.y  ? 1 : -1;
 	draw.err = draw.deltaX - draw.deltaY;
-	ft_put_pixel(point2, fdf);
-	temp_point = ft_create_point(point1->x, point1->y, point1->z, point1->color);
-	while (temp_point->x != point2->x || temp_point->y != point2->y)
+	ft_put_pixel(&point2, fdf);
+	temp_point = point1;
+	while (temp_point.x != point2.x || temp_point.y != point2.y)
 	{
-		ft_put_pixel(temp_point, fdf);
+		ft_put_pixel(&temp_point, fdf);
 		draw.err2 = draw.err * 2;
 		if (draw.err2 > -draw.deltaY)
 		{
 			draw.err -= draw.deltaY;
-			temp_point->x += draw.signX;
+			temp_point.x += draw.signX;
 		}
 		if (draw.err2 < draw.deltaX)
 		{
 			draw.err += draw.deltaX;
-			temp_point->y += draw.signY;
+			temp_point.y += draw.signY;
 		}
 	}
-	free(point1);
-	free(point2);
 }
 
-// int		calculate_default_zoom(t_map *map)
-// {
-
-// }
-
-t_coords	*ft_calculate(t_coords *point, t_fdf *fdf)
+t_coords	ft_calculate(t_coords *point, t_fdf *fdf)
 {
-	t_coords	*new;
+	t_coords	new;
 
-	new = ft_create_point(point->x, point->y, point->z, point->color);
-	new->x *= fdf->map->zoom;
-	new->y *= fdf->map->zoom;
-	new->z *= fdf->map->zoom;
-	ft_rotate_x(&new->y, &new->z, fdf->map->angle_x);
-	ft_rotate_y(&new->x, &new->z, fdf->map->angle_y);
-	ft_rotate_z(&new->x, &new->y, fdf->map->angle_z);
+	new.x = point->x * fdf->map->zoom;
+	new.y = point->y * fdf->map->zoom;
+	new.z = point->z * fdf->map->zoom;
+	new.color = point->color;
+	ft_rotate_x(&new.y, &new.z, fdf->map->angle_x);
+	ft_rotate_y(&new.x, &new.z, fdf->map->angle_y);
+	ft_rotate_z(&new.x, &new.y, fdf->map->angle_z);
 	if (fdf->map->projection == ISO)
-		ft_iso(&new->x, &new->y, new->z);
-	fdf->map->x_offset = 0 - (fdf->map->width / 2 * fdf->map->zoom) + (WIDTH / 2);
-	fdf->map->y_offset = 0 - (fdf->map->height / 2 * fdf->map->zoom) + (HEIGHT / 2);
+		ft_iso(&new.x, &new.y, new.z);
+	fdf->map->x_offset = WIDTH / 2;
+	fdf->map->y_offset = HEIGHT / 2;
+	new.x += fdf->map->x_offset;
+	new.y += fdf->map->y_offset;
 	return (new);
 }
 
@@ -109,17 +104,15 @@ void	ft_draw(t_fdf *fdf)
 		}
 		x++;
 	}
-	mlx_put_image_to_window(fdf->mlx->mlx_ptr, fdf->mlx->win_ptr, fdf->mlx->img_ptr, fdf->map->x_offset, fdf->map->y_offset);
+	mlx_put_image_to_window(fdf->mlx->mlx_ptr, fdf->mlx->win_ptr, fdf->mlx->img_ptr, 0, 0);
 	ft_menu(fdf);
 }
 
 void	ft_draw_map(t_fdf *fdf)
 {
 	fdf->map->zoom = fmin((WIDTH / fdf->map->width / 2), (HEIGHT / fdf->map->height / 2));
-	fdf->map->x_offset = 0 - (fdf->map->width / 2 * fdf->map->zoom) + (WIDTH / 2);
-	fdf->map->y_offset = 0 - (fdf->map->height / 2 * fdf->map->zoom) + (HEIGHT / 2);
 
 	ft_draw(fdf);
-	mlx_key_hook(fdf->mlx->win_ptr, ft_keys, fdf);
+	mlx_hook(fdf->mlx->win_ptr, 2, 0, ft_keys, fdf);
 	mlx_loop(fdf->mlx->mlx_ptr);
 }

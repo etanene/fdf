@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:13:10 by afalmer-          #+#    #+#             */
-/*   Updated: 2019/10/22 17:29:39 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/22 20:44:32 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	ft_add_coords(t_fdf *fdf, char **line_coords, int y)
 		fdf->coords_arr->coords[y * size_line + x] = ft_create_point(x, y, ft_atoi_base(point[0], 10), point[1] ? ft_atoi_base(point[1] + 2, 16) : 0xFFFFFF);
 		x++;
 		line_coords++;
+		ft_free_multiarr(point);
 	}
 	fdf->map->height = y + 1;
 	fdf->map->width = x;
-	ft_free_multiarr(point);
 }
 
 char	**ft_get_coords_line(char *line)
@@ -100,6 +100,27 @@ void ft_print_map(t_coords **map, size_t size)
 	}
 }
 
+void	ft_transform(t_fdf *fdf)
+{
+	t_coords **coords;
+	int		x;
+	int		y;
+
+	coords = fdf->coords_arr->coords;
+	x = 0;
+	while (x < fdf->map->width)
+	{
+		y = 0;
+		while (y < fdf->map->height)
+		{
+			coords[x + y * fdf->map->width]->x -= fdf->map->width / 2;
+			coords[x + y * fdf->map->width]->y -= fdf->map->height / 2;
+			y++;
+		}
+		x++;
+	}
+}
+
 int		main(int ac, char **av)
 {
 	t_fdf		fdf;
@@ -108,6 +129,7 @@ int		main(int ac, char **av)
 		ft_error(ERROR_USAGE);
 	ft_init(&fdf);
 	ft_read_map(av[1], &fdf);
+	ft_transform(&fdf);
 	// ft_printf("width: %d height: %d\n", fdf.map->width, fdf.map->height);
 	ft_draw_map(&fdf);
 	// ft_print_map(fdf.coords_arr->coords, fdf.coords_arr->size);
