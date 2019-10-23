@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 20:34:53 by afalmer-          #+#    #+#             */
-/*   Updated: 2019/10/23 20:35:33 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/23 21:10:05 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	ft_read_map(char *filename, t_fdf *fdf)
 	int			y;
 
 	y = 0;
+	line_coords = NULL;
 	if ((fd = open(filename, O_RDONLY)) == -1)
 		ft_error(ERROR_MAP_OPEN);
 	while (get_next_line(fd, &line) > 0)
@@ -84,4 +85,6 @@ void	ft_read_map(char *filename, t_fdf *fdf)
 		ft_add_coords(fdf, line_coords, y++);
 		ft_free_multiarr(line_coords);
 	}
+	if (!line_coords)
+		ft_error(ERROR_MAP_VALIDATE);
 }

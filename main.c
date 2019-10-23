@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:13:10 by afalmer-          #+#    #+#             */
-/*   Updated: 2019/10/23 20:52:46 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/23 21:25:47 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		main(int ac, char **av)
 		ft_error(ERROR_USAGE);
 	ft_init(&fdf);
 	ft_read_map(av[1], &fdf);
+	ft_init_mlx(&fdf);
 	ft_transform(&fdf);
 	ft_draw_map(&fdf);
 	return (0);

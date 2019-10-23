@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/23 20:53:14 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/23 21:26:05 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define ERROR_MLX_NEW_WIN	"Mlx new window error"
 # define ERROR_MLX_NEW_IMG	"Mlx new image error"
 # define ERROR_MLX_GET_DATA	"Mlx get data addr error"
+# define ERROR_MALLOC		"Malloc error"
 
 # define KEY_ESC 53
 # define KEY_W 13
@@ -138,5 +139,6 @@ int						ft_get_color(t_coords *curr, t_coords *start, \
 									t_coords *end);
 int						ft_get_gradient(int z, t_coords_arr *coords_arr);
 void					ft_read_map(char *filename, t_fdf *fdf);
+void					ft_init_mlx(t_fdf *fdf);
 
 #endif
