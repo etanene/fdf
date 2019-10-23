@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 13:28:58 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/22 19:14:47 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/23 20:58:35 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ft_rotate(int key, t_fdf *fdf)
 		fdf->map->angle_y -= 0.05;
 	else if (key == KEY_D || key == KEY_ARROW_RIGHT)
 		fdf->map->angle_y += 0.05;
-	else if (key == KEY_Q)
-		fdf->map->angle_z += 0.05;
 	else if (key == KEY_E)
+		fdf->map->angle_z += 0.05;
+	else if (key == KEY_Q)
 		fdf->map->angle_z -= 0.05;
 	ft_draw(fdf);
 }

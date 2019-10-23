@@ -6,7 +6,7 @@
 #    By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 17:30:17 by afalmer-          #+#    #+#              #
-#    Updated: 2019/10/22 15:53:46 by afalmer-         ###   ########.fr        #
+#    Updated: 2019/10/23 20:56:50 by afalmer-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ OBJ = $(addprefix $(OBJDIR), $(SRC:%.c=%.o) \
 								$(SRC_PUT:%.c=%.o) \
 								$(SRC_STR:%.c=%.o))
 
-FLAG = -Wall -Wextra -Werror -g
+FLAG = -Wall -Wextra -Werror
 
 HEADER = includes/
 

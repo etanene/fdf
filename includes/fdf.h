@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:06:46 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/22 17:29:22 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/23 20:53:14 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef enum
 {
 	ISO,
 	PARALLEL
-}						t_projection;
+}	t_projection;
 
 typedef struct			s_coords
 {
@@ -66,7 +66,6 @@ typedef struct			s_coords
 	int					y;
 	int					z;
 	int					color;
-	// struct s_coords		*next;
 }						t_coords;
 
 typedef struct			s_mlx_fdf
@@ -80,10 +79,12 @@ typedef struct			s_mlx_fdf
 	int					bits_per_pixel;
 }						t_mlx_fdf;
 
-typedef struct 			s_coords_arr
+typedef struct			s_coords_arr
 {
 	t_coords			**coords;
 	size_t				size;
+	int					minz;
+	int					maxz;
 }						t_coords_arr;
 
 typedef struct			s_map
@@ -99,7 +100,7 @@ typedef struct			s_map
 	int					y_offset;
 }						t_map;
 
-typedef struct 			s_fdf
+typedef struct			s_fdf
 {
 	t_map				*map;
 	t_mlx_fdf			*mlx;
@@ -108,14 +109,14 @@ typedef struct 			s_fdf
 
 typedef struct			s_draw
 {
-	int					deltaX;
-	int					deltaY;
-	int					signX;
-	int 				signY;
+	int					delta_x;
+	int					delta_y;
+	int					sign_x;
+	int					sign_y;
 	int					err;
 	int					err2;
+	t_coords			temp;
 }						t_draw;
-
 
 void					ft_error(char *s);
 void					ft_rotate_x(int *y, int *z, double angle_x);
@@ -133,5 +134,9 @@ int						ft_keys(int key, t_fdf *fdf);
 void					ft_draw(t_fdf *fdf);
 void					ft_menu(t_fdf *fdf);
 t_coords				*ft_create_point(int x, int y, int z, int color);
+int						ft_get_color(t_coords *curr, t_coords *start, \
+									t_coords *end);
+int						ft_get_gradient(int z, t_coords_arr *coords_arr);
+void					ft_read_map(char *filename, t_fdf *fdf);
 
 #endif
