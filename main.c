@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:13:10 by afalmer-          #+#    #+#             */
-/*   Updated: 2019/10/23 21:25:47 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/24 16:22:22 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	ft_transform(t_fdf *fdf)
 
 void	ft_draw_map(t_fdf *fdf)
 {
-	fdf->map->zoom = fmin((WIDTH / fdf->map->width / 2), \
-						(HEIGHT / fdf->map->height / 2));
+	fdf->map->zoom = fmin((WIDTH / fdf->map->width / 3), \
+						(HEIGHT / fdf->map->height / 3));
 	ft_draw(fdf);
 	mlx_hook(fdf->mlx->win_ptr, 2, 0, ft_keys, fdf);
 	mlx_loop(fdf->mlx->mlx_ptr);
@@ -46,7 +46,7 @@ int		main(int ac, char **av)
 {
 	t_fdf	fdf;
 
-	if (ac < 2)
+	if (ac != 2)
 		ft_error(ERROR_USAGE);
 	ft_init(&fdf);
 	ft_read_map(av[1], &fdf);

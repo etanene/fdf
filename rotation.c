@@ -6,7 +6,7 @@
 /*   By: afalmer- <afalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 12:58:07 by ntothmur          #+#    #+#             */
-/*   Updated: 2019/10/19 18:39:22 by afalmer-         ###   ########.fr       */
+/*   Updated: 2019/10/24 16:22:33 by afalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	ft_rotate_z(int *x, int *y, double angle_z)
 
 	previous_x = *x;
 	previous_y = *y;
-	*x = previous_x * cos(angle_z) - previous_y * sin(angle_z);
-	*y = previous_x * sin(angle_z) + previous_y * cos(angle_z);
+	*x = previous_x * cos(angle_z) + previous_y * sin(angle_z);
+	*y = -previous_x * sin(angle_z) + previous_y * cos(angle_z);
 }
 
 void	ft_iso(int *x, int *y, int z)
